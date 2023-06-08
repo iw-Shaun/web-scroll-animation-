@@ -1,0 +1,309 @@
+@keyframes open-fade {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.background {
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.horsebit-page {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  position: relative;
+  top: 0;
+  padding-top: 27vw;
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.horsebit-page .area-top {
+  position: relative;
+  width: 100%;
+  margin-bottom: 17vw;
+}
+.horsebit-page .area-top .title-1 {
+  position: relative;
+  width: 100%;
+  height: 21vw;
+}
+.horsebit-page .area-top .title-1 .main-title {
+  position: absolute;
+  top: 8.5vw;
+  width: 100%;
+  text-align: center;
+  font-size: 7.8vw;
+  letter-spacing: 0.15vw;
+}
+.horsebit-page .area-top .h100 {
+  height: 100vw;
+}
+.horsebit-page .area-top .context-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  padding: 5vw 0 0;
+}
+.horsebit-page .area-top .context-1 p {
+  width: 84.5vw;
+  font-size: 3.4vw;
+  letter-spacing: 0.18vw;
+  line-height: 5.4vw;
+}
+.horsebit-page .area-top .title-2 {
+  position: relative;
+  width: 100%;
+  height: 19.5vw;
+}
+.horsebit-page .area-top .title-2 .title {
+  position: absolute;
+  top: 9vw;
+  left: 8vw;
+  width: 100%;
+  letter-spacing: 0.08vw;
+  font-size: 5.5vw;
+  font-weight: bold;
+}
+.horsebit-page .area-top .context-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  margin-bottom: 7.5vw;
+}
+.horsebit-page .area-top .context-2 p {
+  width: 84.38vw;
+  font-size: 4.06vw;
+  letter-spacing: 0.15vw;
+  line-height: 6.56vw;
+  font-weight: 400;
+}
+.horsebit-page .area-top .photo {
+  position: relative;
+  width: 100%;
+  height: 89.8vw;
+}
+.horsebit-page .area-1 {
+  position: relative;
+  width: 100%;
+  padding: 0 7.5vw;
+}
+.horsebit-page .area-1 .title-1 {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 9.5vw;
+  margin-bottom: 5vw;
+}
+.horsebit-page .area-1 .title-1 .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  position: relative;
+  font-size: 4.37vw;
+  color: white;
+  background: #000;
+  width: 10vw;
+}
+.horsebit-page .area-1 .title-1 .text {
+  position: relative;
+  padding-top: 2.5vw;
+  text-align: center;
+  margin-left: 4.4vw;
+  letter-spacing: 0.2vw;
+  font-size: 5.31vw;
+  font-weight: bold;
+}
+.horsebit-page .area-1 .content-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  margin-bottom: 5vw;
+}
+.horsebit-page .area-1 .content-1 p {
+  width: 84.38vw;
+  font-size: 4.06vw;
+  letter-spacing: 0.15vw;
+  line-height: 6.56vw;
+  font-weight: 400;
+}
+.horsebit-page .area-1 .content-2 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+}
+.horsebit-page .area-1 .content-2 .text {
+  width: 39.06vw;
+  font-size: 4.06vw;
+  letter-spacing: 0.15vw;
+  line-height: 6.56vw;
+  text-align: justify;
+  font-weight: 400;
+  margin-right: 4vw;
+}
+.horsebit-page .area-1 .content-2 img {
+  width: 41.09vw;
+}
+.horsebit-page .area-2 {
+  position: relative;
+  width: 100%;
+  padding: 0 7.5vw;
+}
+.horsebit-page .area-2 .title-1 {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 9.5vw;
+  margin-bottom: 5vw;
+}
+.horsebit-page .area-2 .title-1 .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  position: relative;
+  font-size: 4.37vw;
+  color: white;
+  background: #000;
+  width: 10vw;
+}
+.horsebit-page .area-2 .title-1 .text {
+  position: relative;
+  padding-top: 2.5vw;
+  text-align: center;
+  margin-left: 4.4vw;
+  letter-spacing: 0.2vw;
+  font-size: 5.31vw;
+  font-weight: bold;
+}
+.horsebit-page .area-2 .content-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  margin-bottom: 5vw;
+}
+.horsebit-page .area-2 .content-1 p {
+  width: 84.38vw;
+  font-size: 4.06vw;
+  letter-spacing: 0.15vw;
+  line-height: 6.56vw;
+  font-weight: 400;
+}
+.horsebit-page .area-2 .photo {
+  position: relative;
+  width: 100%;
+  height: 134vw;
+}
+.horsebit-page .area-2 .photo .DakotaJohnson {
+  position: absolute;
+  top: -2vw;
+  left: -7vw;
+  width: 53vw;
+}
+.horsebit-page .area-2 .photo .DuaLipa {
+  position: absolute;
+  top: 19vw;
+  left: 3vw;
+  width: 79vw;
+}
+.horsebit-page .area-2 .photo .IU {
+  position: absolute;
+  top: 9vw;
+  left: 45vw;
+  width: 48vw;
+}
+.horsebit-page .area-3 {
+  position: relative;
+  width: 100%;
+  padding: 0 7.5vw;
+}
+.horsebit-page .area-3 .title-1 {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 9.5vw;
+  margin-bottom: 5vw;
+}
+.horsebit-page .area-3 .title-1 .box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  position: relative;
+  font-size: 4.37vw;
+  color: white;
+  background: #000;
+  width: 10vw;
+}
+.horsebit-page .area-3 .title-1 .text {
+  position: relative;
+  padding-top: 2.5vw;
+  text-align: center;
+  margin-left: 4.4vw;
+  letter-spacing: 0.2vw;
+  font-size: 5.31vw;
+  font-weight: bold;
+}
+.horsebit-page .area-3 .content-1 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  margin-bottom: 7vw;
+}
+.horsebit-page .area-3 .content-1 p {
+  width: 84.38vw;
+  font-size: 4.06vw;
+  letter-spacing: 0.15vw;
+  line-height: 6.56vw;
+  font-weight: 400;
+}
+.horsebit-page .h150 {
+  height: 150vw;
+}
+.horsebit-page .footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  position: relative;
+  width: 100%;
+  min-height: 26vw;
+}
+.horsebit-page .footer .button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  background: #000;
+  margin-bottom: 1.8vw;
+  width: 47vw;
+  height: 8.8vw;
+  color: white;
+  font-size: 3.5vw;
+}

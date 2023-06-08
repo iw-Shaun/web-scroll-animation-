@@ -1,0 +1,36 @@
+export default class AppError {
+  static NO_ERROR = 0;
+
+  // Common
+  static INVALID_REQUEST = 1;
+  static INVALID_FORMAT = 2;
+  static ALREADY_EXIST = 3;
+  static NOT_FOUND = 4;
+  static INVALID_USER_OR_PASSWORD = 5;
+  static INVALID_PASSWORD = 6;
+  static PERMISSION_DENIED = 7;
+  static INVALID_SOURCE_ID = 8;
+  static INVALID_VERIFICATION_CODE = 9;
+  static VERIFICATION_CODE_IN_COOLDOWN = 10;
+  static VERIFICATION_CODE_EXPIRED = 11;
+  static PASSWORD_CHANGED_REQUIRED = 12;
+  static PASSWORD_EXPIRED = 13;
+  static ACCOUNT_IS_INACTIVE = 14;
+  static PASSWORD_FORMAT_ERROR = 15;
+  static VERIFICATION_CODE_FAILED_TOO_MANY_TIMES = 16;
+  static VERIFICATION_CODE_CANNOT_SEND = 17;
+  static LOGIN_FAILED_COUNT_LIMIT = 18;
+  static PASSWORD_LOGIN_IS_DISABLED = 19;
+  static GET_LINE_ACCESS_TOKEN_FAILED = 20;
+  static MOBILE_USED = 21;
+  static ALREADY_RESERVED = 22;
+  static ACTIVITY_IS_FULL = 23;
+  static RETRY_REQUEST = 24;
+  static INVALID_STATUS = 25;
+  static INVALID_ROLE = 26;
+  static INVALID_MOBILE = 27;
+
+  // Database
+  static DB_UNHANDLED_EXCEPTION = 11;
+  static DB_DUPLICATED_ENTRY = 12;
+}

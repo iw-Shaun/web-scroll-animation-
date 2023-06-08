@@ -1,0 +1,986 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "API Docs",
+        "version": "0.1"
+    },
+    "paths": {
+        "/ecpay/order/book": {
+            "post": {
+                "tags": [
+                    "ECPay"
+                ],
+                "summary": "預約訂單, 產生訂單ID",
+                "description": "預約訂單, 產生訂單ID",
+                "operationId": "32a0ba288bfc65ecd0c24a81c1166b7a",
+                "responses": {
+                    "200": {
+                        "description": "回傳訂單ID及商品資訊",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "error": {
+                                                    "type": "boolean"
+                                                },
+                                                "message": {
+                                                    "type": "string"
+                                                },
+                                                "order_id": {
+                                                    "type": "string"
+                                                },
+                                                "trade_no": {
+                                                    "type": "string"
+                                                },
+                                                "product_info": {
+                                                    "$ref": "#/components/schemas/EcpayProduct"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ecpay/order/create": {
+            "post": {
+                "tags": [
+                    "ECPay"
+                ],
+                "summary": "建立綠界付款訂單，且跳轉至綠界金流付款頁面 (暫不使用)",
+                "description": "建立綠界付款訂單，且跳轉至綠界金流付款頁面 (暫不使用)",
+                "operationId": "5b1617122a984979ca0d40bc7e8ddaf4",
+                "requestBody": {
+                    "description": "Create Order request body",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "item_name",
+                                    "item_amount",
+                                    "trade_desc"
+                                ],
+                                "properties": {
+                                    "item_name": {
+                                        "description": "物品品項名稱",
+                                        "type": "string",
+                                        "example": "Item Name"
+                                    },
+                                    "item_amount": {
+                                        "description": "品項金額",
+                                        "type": "integer",
+                                        "example": "100"
+                                    },
+                                    "trade_desc": {
+                                        "description": "物品內容描述",
+                                        "type": "string",
+                                        "example": "Order Description"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "跳轉至綠界金流付款面頁"
+                    }
+                }
+            }
+        },
+        "/ecpay/order/query": {
+            "get": {
+                "tags": [
+                    "ECPay"
+                ],
+                "summary": "查詢使用者的訂單",
+                "description": "查詢使用者的訂單.",
+                "operationId": "c4df47bcb3a383b553e1c496479063a4",
+                "responses": {
+                    "200": {
+                        "description": "訂單資訊"
+                    }
+                }
+            }
+        },
+        "/ecpay/order/repay": {
+            "post": {
+                "tags": [
+                    "ECPay"
+                ],
+                "summary": "訂單重新付款，跳轉至綠界付款頁面",
+                "description": "訂單重新付款，跳轉至綠界付款頁面.",
+                "operationId": "c58763b9e9fa57a553cdf6fa69c19a09",
+                "requestBody": {
+                    "description": "訂單重新付款，跳轉至綠界付款頁面",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "order_id",
+                                    "invoice_type",
+                                    "invoice_name",
+                                    "invoice_tax_id",
+                                    "invoice_phone",
+                                    "invoice_address"
+                                ],
+                                "properties": {
+                                    "order_id": {
+                                        "description": "訂單編號",
+                                        "type": "string",
+                                        "example": "20230101123456"
+                                    },
+                                    "invoice_type": {
+                                        "description": "發票類型, 0:二聯式, 1:三聯式",
+                                        "type": "integer",
+                                        "example": "0"
+                                    },
+                                    "invoice_name": {
+                                        "description": "發票抬頭",
+                                        "type": "string",
+                                        "example": "艾思維特"
+                                    },
+                                    "invoice_tax_id": {
+                                        "description": "發票統編",
+                                        "type": "string",
+                                        "example": "55740535"
+                                    },
+                                    "invoice_phone": {
+                                        "description": "收件人電話",
+                                        "type": "string",
+                                        "example": "0123456789"
+                                    },
+                                    "invoice_address": {
+                                        "description": "收件人地址",
+                                        "type": "string",
+                                        "example": "Order Description"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "跳轉至綠界金流付款面頁"
+                    }
+                }
+            }
+        },
+        "/ecpay/order/cancel": {
+            "post": {
+                "tags": [
+                    "ECPay"
+                ],
+                "summary": "取消訂單",
+                "description": "取消訂單",
+                "operationId": "9b56bc5476fd63c75db99aebae02d0d0",
+                "requestBody": {
+                    "description": "取消訂單",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "order_id"
+                                ],
+                                "properties": {
+                                    "order_id": {
+                                        "description": "訂單編號",
+                                        "type": "string",
+                                        "example": "20230101123456"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/game/player/me": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "査詢玩家個人資訊",
+                "description": "",
+                "operationId": "198153605902065d0b4dcfcba397f232",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_id": {
+                                        "description": "user_id, not LINE_ID",
+                                        "type": "string",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "回傳玩家資訊",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "error": {
+                                                    "description": "執行是否有錯誤",
+                                                    "type": "boolean",
+                                                    "example": false
+                                                },
+                                                "msg": {
+                                                    "description": "錯誤訊息",
+                                                    "type": "string",
+                                                    "example": ""
+                                                },
+                                                "user": {
+                                                    "properties": {
+                                                        "score": {
+                                                            "description": "歷史高分",
+                                                            "type": "integer",
+                                                            "example": 1000
+                                                        },
+                                                        "remain_rounds": {
+                                                            "description": "可遊玩次數",
+                                                            "type": "integer",
+                                                            "example": 5
+                                                        }
+                                                    },
+                                                    "type": "object"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/game/bind_reward": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "binding reward",
+                "description": "add points for new binding user",
+                "operationId": "binding reward",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_id": {
+                                        "description": "user_id, not LINE_ID",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "回傳執行結果",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "error": {
+                                                    "description": "執行是否有錯誤",
+                                                    "type": "boolean"
+                                                },
+                                                "msg": {
+                                                    "description": "錯誤訊息",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/game/start": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "Start the game",
+                "description": "Start the game and return user information and reward information if any.",
+                "operationId": "game_start",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_id": {
+                                        "description": "user_id, not LINE_ID",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "回傳玩家資訊、獎勵資訊等",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "error": {
+                                                    "description": "執行是否有錯誤",
+                                                    "type": "boolean"
+                                                },
+                                                "msg": {
+                                                    "description": "錯誤訊息",
+                                                    "type": "string"
+                                                },
+                                                "has_reward": {
+                                                    "description": "是否有獎勵可獲得",
+                                                    "type": "boolean"
+                                                },
+                                                "reward_id": {
+                                                    "description": "獎勵ID",
+                                                    "type": "integer"
+                                                },
+                                                "reward_point": {
+                                                    "description": "獎勵點數",
+                                                    "type": "integer"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/game/end": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "End the game",
+                "description": "End the game and process the reward if there is any",
+                "operationId": "game_end",
+                "requestBody": {
+                    "description": "Request body parameters",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "user_id",
+                                    "has_reward",
+                                    "reward_id"
+                                ],
+                                "properties": {
+                                    "user_id": {
+                                        "description": "user id, not LINE ID",
+                                        "type": "string",
+                                        "example": "user_id"
+                                    },
+                                    "score": {
+                                        "description": "history high scores",
+                                        "type": "integer",
+                                        "example": "1000"
+                                    },
+                                    "last_score": {
+                                        "description": "last round scores",
+                                        "type": "integer",
+                                        "example": "1000"
+                                    },
+                                    "txid": {
+                                        "description": "transaction id",
+                                        "type": "string",
+                                        "example": "txid"
+                                    },
+                                    "has_reward": {
+                                        "description": "Whether the user has earned a reward or not.",
+                                        "type": "boolean",
+                                        "example": true
+                                    },
+                                    "reward_id": {
+                                        "description": "The ID of the reward that the user has earned.",
+                                        "type": "integer",
+                                        "example": 123
+                                    },
+                                    "reward_point": {
+                                        "description": "The amount of the reward points that the user has earned.",
+                                        "type": "integer",
+                                        "example": 6
+                                    },
+                                    "extra_info": {
+                                        "description": "extra information in json format",
+                                        "type": "string",
+                                        "example": "{}"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "error": {
+                                                    "description": "執行是否有錯誤",
+                                                    "type": "boolean"
+                                                },
+                                                "msg": {
+                                                    "description": "錯誤訊息",
+                                                    "type": "string"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/game/rank": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "",
+                "operationId": "03ee8555160a1d1280657d267dc8914d",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_id": {
+                                        "description": "user_id, not LINE_ID",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "description": "1 for yes, 0 for no",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/game/rank/top": {
+            "get": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "",
+                "operationId": "372b639ad52f6b1b55d1c78f58cbbead",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/User"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/game/friend/invite": {
+            "post": {
+                "tags": [
+                    "Game"
+                ],
+                "summary": "",
+                "operationId": "3cdc94fc3c7c61984d0cd6000f87df16",
+                "requestBody": {
+                    "description": "",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "master_id": {
+                                        "description": "user_id, not LINE_ID",
+                                        "type": "string"
+                                    },
+                                    "slave_id": {
+                                        "description": "user_id, not LINE_ID",
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "type": "array",
+                                            "items": {
+                                                "$ref": "#/components/schemas/User"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/me": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "User資料",
+                "operationId": "575e664a84dddf32c0ba6e7b7fb33ee5",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "properties": {
+                                                "user": {
+                                                    "$ref": "#/components/schemas/User"
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/me/coupons/all": {
+            "get": {
+                "tags": [
+                    "Coupons"
+                ],
+                "summary": "List coupons",
+                "description": "Retrieve a list of coupons for the authenticated user",
+                "operationId": "list_coupons",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "description": "List of coupons",
+                                            "type": "array",
+                                            "items": {
+                                                "properties": {
+                                                    "id": {
+                                                        "description": "Coupon ID",
+                                                        "type": "integer"
+                                                    },
+                                                    "type": {
+                                                        "description": "Coupon type",
+                                                        "type": "integer"
+                                                    },
+                                                    "end_time": {
+                                                        "description": "End time of the coupon in yyyy/mm/dd format",
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "redeem_time": {
+                                                        "description": "Redeem time of the coupon in yyyy-mm-dd hh:mm:ss format",
+                                                        "type": "string",
+                                                        "nullable": true
+                                                    },
+                                                    "used_type": {
+                                                        "description": "Coupon usage status (0: not used, 1: used, 2: expired)",
+                                                        "type": "integer"
+                                                    }
+                                                },
+                                                "type": "object"
+                                            }
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/me/coupons/redeem": {
+            "post": {
+                "tags": [
+                    "Coupons"
+                ],
+                "summary": "Redeem a coupon",
+                "description": "Redeem a coupon with the specified ID and code",
+                "operationId": "00302ef21a0330ac52357cfb6f873424",
+                "requestBody": {
+                    "description": "The data to redeem a coupon",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "id": {
+                                        "type": "integer",
+                                        "example": "123"
+                                    },
+                                    "code": {
+                                        "type": "string",
+                                        "example": "ABCD1234"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Coupon redeemed successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "description": "1 for success, -1 for already redeemed, -2 for not the owner, -3 for expired, -999 for invalid coupon ID",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid input",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "error": {
+                                            "description": "A description of the error",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/me/check_bind_in_salesforce": {
+            "get": {
+                "tags": [
+                    "Users"
+                ],
+                "summary": "檢查Line ID是否已綁定Line OA會員",
+                "operationId": "e8024922b81b23a0d78abdb3e899d81e",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "data": {
+                                            "description": "1 for yes, 0 for no",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "EcpayOrder": {
+                "title": "EcpayOrder",
+                "description": "使用者的訂單資訊",
+                "properties": {
+                    "id": {
+                        "description": "資料庫流水號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "user_id": {
+                        "description": "使用者ID",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "order_id": {
+                        "description": "訂單ID",
+                        "type": "string",
+                        "example": "isweety"
+                    },
+                    "order_date": {
+                        "description": "訂單日期",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-04-19 12:00:00"
+                    },
+                    "trade_no": {
+                        "description": "綠界付款交易編號",
+                        "type": "string",
+                        "example": "20230419120000"
+                    },
+                    "order_status": {
+                        "description": "使用者訂單狀態",
+                        "type": "string",
+                        "example": "CREATED"
+                    },
+                    "product_code": {
+                        "description": "訂單購買的品項",
+                        "type": "string",
+                        "example": "hennessy_activity_3v3_fee"
+                    },
+                    "invoice_type": {
+                        "description": "發票類型 0:二聯式, 1:三聯式",
+                        "type": "integer",
+                        "example": "0"
+                    },
+                    "invoice_name": {
+                        "description": "發票抬頭",
+                        "type": "string",
+                        "example": "AAA"
+                    },
+                    "invoice_tax_id": {
+                        "description": "發票統編",
+                        "type": "string",
+                        "example": "12345678"
+                    },
+                    "invoice_phone": {
+                        "description": "發票電話",
+                        "type": "string",
+                        "example": "0912345678"
+                    },
+                    "invoice_address": {
+                        "description": "發票地址",
+                        "type": "string",
+                        "example": "台北市"
+                    }
+                },
+                "type": "object"
+            },
+            "EcpayProduct": {
+                "title": "EcpayProduct",
+                "description": "商品資訊",
+                "properties": {
+                    "id": {
+                        "description": "資料庫流水號",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "code": {
+                        "description": "代號",
+                        "type": "string",
+                        "example": "hennessy_activity_3v3_fee"
+                    },
+                    "type": {
+                        "description": "類型",
+                        "type": "string",
+                        "example": "3V3"
+                    },
+                    "name": {
+                        "description": "名稱",
+                        "type": "string",
+                        "example": "3V3籃球賽"
+                    },
+                    "price": {
+                        "description": "金額",
+                        "type": "integer",
+                        "example": "1000"
+                    },
+                    "description": {
+                        "description": "測試描述",
+                        "type": "string",
+                        "example": "報名費"
+                    }
+                },
+                "type": "object"
+            },
+            "User": {
+                "title": "User",
+                "description": "User resource",
+                "properties": {
+                    "id": {
+                        "description": "User ID",
+                        "type": "integer",
+                        "example": 1
+                    },
+                    "line_id": {
+                        "description": "Line ID",
+                        "type": "string",
+                        "example": ""
+                    },
+                    "name": {
+                        "description": "Line nickname",
+                        "type": "string",
+                        "example": "isweety"
+                    },
+                    "loggedin_at": {
+                        "description": "User log in date",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-04-19 12:00:00"
+                    },
+                    "created_at": {
+                        "description": "User creation date",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-04-19 12:00:00"
+                    },
+                    "updated_at": {
+                        "description": "User last update date",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-04-19 12:00:00"
+                    },
+                    "is_bind_oa": {
+                        "description": "Line OA binding",
+                        "type": "tinyint",
+                        "example": "1"
+                    },
+                    "score": {
+                        "description": "game score (highest)",
+                        "type": "integer",
+                        "example": "1000"
+                    },
+                    "last_score": {
+                        "description": "game score (last time)",
+                        "type": "integer",
+                        "example": "800"
+                    },
+                    "remain_rounds": {
+                        "description": "remain rounds user could start game",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "history_rounds": {
+                        "description": "total rounds user started game",
+                        "type": "integer",
+                        "example": "1"
+                    },
+                    "last_played_time": {
+                        "description": "User last played date",
+                        "type": "string",
+                        "format": "date-time",
+                        "example": "2023-04-19 12:00:00"
+                    }
+                },
+                "type": "object"
+            }
+        }
+    }
+}
